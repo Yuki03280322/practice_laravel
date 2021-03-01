@@ -17,6 +17,15 @@ Route::get('/', function () {
 
 
 Route::get('tests/test', 'TestController@index');
-Auth::routes();
+
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function() {
+// Route::groupメソッドの最初の引数には共通の属性を配列で指定
+// prefix => 'contact'このルートグループ内のURIを指定(URIにcontactをつけている)
+//middleware => auth:認証されていれば表示する(認証されていなければ認証(ログイン)画面へ)
+    Route::get('index', 'ContactFormController@index')->name('contact.index');//nameはつけておくとviewファイル処理が楽に
+});
+// Route::get('contact/index', 'ContactFormController@index'); contact/indexというパスが指定されたらContactFormControllerのindexアクションが起動
+Auth::routes();//ファサードクラスvender/laravel/framework/illuminate/Routing/Router.phpに記述されているauthメソッドを呼び出している
+// user系の認証のルーティングはこの1行で補うことが可能
 
 Route::get('/home', 'HomeController@index')->name('home');
