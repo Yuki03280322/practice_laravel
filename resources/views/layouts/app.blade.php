@@ -39,19 +39,24 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest
+                        @guest 
+                        {{-- ユーザーは認証されていない --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
+                                {{-- {[__('Login')]}:__ヘルパー関数を使用し言語ファイルから行を取得bladeのテンプレートエンジンを使用しているため{{}}が必要 --}}
+                                {{-- Loginを日本語で出力するためlang/ja/messages.phpにキーバリューを設定し呼び出し --}}
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                                 </li>
                             @endif
                         @else
+                        {{-- ユーザーは認証されている --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{-- ログインしているusernameを表示 --}}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -63,6 +68,7 @@
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
+                                        {{-- クロスサイトリクエストフォージュリ:サイト横断時にリクエストを偽装する攻撃対策 --}}
                                     </form>
                                 </div>
                             </li>
