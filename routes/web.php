@@ -24,6 +24,7 @@ Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function() {
 //middleware => auth:認証されていれば表示する(認証されていなければ認証(ログイン)画面へ)
     Route::get('index', 'ContactFormController@index')->name('contact.index');//nameはつけておくとviewファイル処理が楽に
     Route::get('create', 'ContactFormController@create')->name('contact.create');
+    Route::post('store', 'ContactFormController@store')->name('contact.store');
 });
 // Route::get('contact/index', 'ContactFormController@index'); contact/indexというパスが指定されたらContactFormControllerのindexアクションが起動
 Auth::routes();//ファサードクラスvender/laravel/framework/illuminate/Routing/Router.phpに記述されているauthメソッドを呼び出している
