@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\ContactForm;//ContactFormモデルを呼び出し保存する為、クラス名でありファイル名でもある
+use Illuminate\Support\Facades\DB;// クエリビルダを使用するためのファサード表記
 
 class ContactFormController extends Controller
 {
@@ -15,8 +16,16 @@ class ContactFormController extends Controller
      */
     public function index()
     {
-        //
-        return view('contact.index');
+        // エロクワント　ORマッパー
+        // $contacts = ContactForm::all();
+        // これだと必要無いデータも一括で取得してしまう
+
+        // クエリビルダ
+        $contacts = DB::table('contact_forms')
+        ->select('id', 'your_name', 'title', 'created_at')
+        ->get();
+        return view('contact.index', compact('contacts'));
+        // compactでビューへ変数を渡す
     }
 
     /**
