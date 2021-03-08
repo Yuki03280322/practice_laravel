@@ -23,6 +23,7 @@ class ContactFormController extends Controller
         // クエリビルダ
         $contacts = DB::table('contact_forms')
         ->select('id', 'your_name', 'title', 'created_at')
+        ->orderby('created_at', 'desc')
         ->get();
         return view('contact.index', compact('contacts'));
         // compactでビューへ変数を渡す
@@ -73,6 +74,8 @@ class ContactFormController extends Controller
     public function show($id)
     {
         //
+        $contact = ContactForm::find($id);
+        return view('contact.show', compact('contact'));
     }
 
     /**
