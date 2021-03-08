@@ -16,7 +16,13 @@
 
                     
                     hello show!
-                    {{ $contact->your_name}}
+                    {{ $contact->your_name }}
+                    {{ $contact->title }}
+                    {{ $contact->email }}
+                    {{ $contact->url }}
+                    {{ $gender }}
+                    {{ $age }}
+                    {{ $contact->contact }}
                     <form method="POST" action="{{route('contact.store')}}">
                     @csrf
                     氏名
