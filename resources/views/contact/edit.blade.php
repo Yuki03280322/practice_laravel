@@ -16,7 +16,7 @@
 
                     
                     hello edit!
-                    <form method="POST" action="{{route('contact.store')}}">
+                    <form method="POST" action="{{route('contact.update', ['id' => $contact->id])}}">
                     @csrf
                     氏名
                     <input type="text" name="your_name" value="{{ $contact->your_name }}">
@@ -52,7 +52,7 @@
                     <input type="checkbox" name="caution" value="1">注意事項に同意する
                     <br>
 
-                    <input class="btn btn-info" type="submit" value="変更する">
+                    <input class="btn btn-info" type="submit" value="更新する">
                     </form>
 
                 </div>
