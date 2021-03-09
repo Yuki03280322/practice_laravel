@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\ContactForm;//ContactFormモデルを呼び出し保存する為、クラス名でありファイル名でもある
 use Illuminate\Support\Facades\DB;// クエリビルダを使用するためのファサード表記
+use App\Services\CheckFormData;// ファットコントローラー防止の為、別ファイルに記載したプログラムを呼び出し
 
 class ContactFormController extends Controller
 {
@@ -50,6 +51,7 @@ class ContactFormController extends Controller
     //Requestは5行目で生成したクラスのインスタンスであり,引数にして呼び出している
     {
         $contact = new ContactForm;// 保存するモデルのインスタンスを作成
+        
         $contact->your_name = $request->input('your_name');
         $contact->title = $request->input('title');
         $contact->email = $request->input('email');
@@ -75,31 +77,8 @@ class ContactFormController extends Controller
     {
         //
         $contact = ContactForm::find($id);
-        if($contact->gender === 0){
-            $gender = '男性';
-        }
-        if($contact->gender === 1){
-            $gender = '女性';
-        }
-        if($contact->age === 1){
-            $age = '~19歳';
-        }
-        if($contact->age === 2){
-            $age = '20~29歳';
-        }
-        if($contact->age === 3){
-            $age = '30~39歳';
-        }
-        if($contact->age === 4){
-            $age = '40~49歳';
-        }
-        if($contact->age === 5){
-            $age = '50~59歳';
-        }
-        if($contact->age === 6){
-            $age = '60歳~';
-        }
-
+        $gender = CheckFormData::checkGender($contact);//CheckFormDataのcheckGenderメソッドに$contactを渡し結果を変数へ
+        $age = CheckFormData::checkAge($contact);
         return view('contact.show', compact('contact', 'gender', 'age'));
     }
 
