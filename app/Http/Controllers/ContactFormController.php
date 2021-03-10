@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ContactForm;//ContactFormモデルを呼び出し保存する為、クラス名でありファイル名でもある
 use Illuminate\Support\Facades\DB;// クエリビルダを使用するためのファサード表記
 use App\Services\CheckFormData;// ファットコントローラー防止の為、別ファイルに記載したプログラムを呼び出し
+use App\Http\Requests\StoreContactForm;//バリデーションを記入したファイルの呼び出し
 
 class ContactFormController extends Controller
 {
@@ -47,11 +48,11 @@ class ContactFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)//Requestクラスを使ってデータを持ってくる(RequestはRequestクラスをインスタンス化したもの)＝(DI:依存性の注入)
+    public function store(StoreContactForm $request)//Requestクラスを使ってデータを持ってくる(RequestはRequestクラスをインスタンス化したもの)＝(DI:依存性の注入)
     //Requestは5行目で生成したクラスのインスタンスであり,引数にして呼び出している
     {
         $contact = new ContactForm;// 保存するモデルのインスタンスを作成
-        
+
         $contact->your_name = $request->input('your_name');
         $contact->title = $request->input('title');
         $contact->email = $request->input('email');
