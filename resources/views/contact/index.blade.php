@@ -40,6 +40,11 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $contacts->links() }}
+                    {{--ペジネーションはlaravelが設定したメソッドを呼び出し可能にしているvender/larabel/framework/pagination
+                        linksメソッドで生成されるHTMLはBootstrapと互換性がある
+                        bootstrap-4.blade.phpファイルでペジネーションのHTMLが作られている
+                     --}}
                 </div>
             </div>
         </div>
