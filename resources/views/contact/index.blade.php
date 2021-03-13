@@ -18,6 +18,10 @@
                       新規登録
                     </button>
                     </form>
+                    <form method="GET" action="{{ route('contact.index') }}" class="form-inline my-2 my-lg-0">
+                    <input class="form-control me-2" name="search" type="search" placeholder="検索" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">検索</button>
+                    </form>
                     <table class="table">
                         <thead>
                             <tr>
@@ -31,10 +35,10 @@
                         <tbody>
                             @foreach($contacts as $contact)
                             <tr>
-                                <th>{{ $contact->id}}</th>
-                                <td>{{ $contact->your_name}}</td>
-                                <td>{{ $contact->title}}</td>
-                                <td>{{ $contact->created_at}}</td>
+                                <th>{{ $contact->id }}</th>
+                                <td>{{ $contact->your_name }}</td>
+                                <td>{{ $contact->title }}</td>
+                                <td>{{ $contact->created_at }}</td>
                                 <td><a href="{{ route('contact.show', ['id' => $contact->id]) }}">詳細を見る</a></td>
                             </tr>
                             @endforeach
