@@ -16,7 +16,7 @@ class ContactFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request)//検索フォームから値を持ってくる必要があるためRequestクラスのインスタンスでデータを持ってくる
     {
         $search = $request->input('search');
         // エロクワント　ORマッパー
@@ -39,7 +39,7 @@ class ContactFormController extends Controller
             $search_split2 = preg_split('/[\s]+/', $search_split,-1,PREG_SPLIT_NO_EMPTY);//空白で区切る
             foreach($search_split2 as $value)
             {
-                $query->where('your_name', 'like', '%'.$value.'%');
+                $query->where('your_name', 'like', '%'.$value.'%');//SQLの書き方
             }
         }
         $query->select('id', 'your_name', 'title', 'created_at');

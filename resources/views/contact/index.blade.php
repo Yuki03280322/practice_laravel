@@ -19,7 +19,7 @@
                     </button>
                     </form>
                     <form method="GET" action="{{ route('contact.index') }}" class="form-inline my-2 my-lg-0">
-                    <input class="form-control me-2" name="search" type="search" placeholder="検索" aria-label="Search">
+                    <input class="form-control me-2" name="search" type="search" placeholder="氏名検索" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">検索</button>
                     </form>
                     <table class="table">
