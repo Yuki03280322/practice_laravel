@@ -23,7 +23,6 @@ class ContactFormController extends Controller
         // $contacts = ContactForm::all();
         // これだと必要無いデータも一括で取得してしまう
 
-        // クエリビルダ
         // $contacts = DB::table('contact_forms')
         // ->select('id', 'your_name', 'title', 'created_at')
         // ->orderby('created_at', 'desc')
